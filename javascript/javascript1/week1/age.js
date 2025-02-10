@@ -1,6 +1,8 @@
 /* Age-ify (A future age calculator) */
 
-let yearOfBirth = 1992;
-let yearFuture = 2032;
-let age = yearFuture - yearOfBirth;
-console.log("You will be " + age +" years old in " + yearFuture ) ;
+const yearOfBirth = 1992;
+const yearFuture = 2032;
+const age = yearFuture - yearOfBirth;
+//console.log("You will be " + age +" years old in " + yearFuture );
+
+console.log(`You will be ${age} years old in ${yearFuture}`);
