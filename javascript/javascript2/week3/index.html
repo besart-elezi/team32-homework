@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+</head>
+<body>
+    <h1>Currency Converter</h1>
+
+    <!-- Add Currency Form -->
+    <form id="add-currency-form">
+        <input type="text" id="base-currency" placeholder="Base currency (e.g., EUR)" required>
+        <input type="text" id="currency" placeholder="Currency (e.g., USD)" required>
+        <input type="number" id="rate" placeholder="Exchange Rate" step="0.0001" required>
+        <button type="submit">Add currency</button>
+    </form>
+
+    <!-- Exchange Rates Display -->
+    <h2>Exchange Rates</h2>
+    <ul id="currency-list"></ul>
+
+    <!-- Currency Search -->
+    <h2>Search Exchange Rate</h2>
+    <input type="text" id="search-from" placeholder="From currency (e.g., EUR)" required>
+    <input type="text" id="search-to" placeholder="To currency (e.g., USD)" required>
+    <button id="search-button">Search</button>
+    <span id="market-status"></span>
+
+    <p id="search-result"></p>
+
+    <!-- Load JavaScript -->
+    <script src="script.js" defer></script>
+</body>
+</html>
