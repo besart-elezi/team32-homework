@@ -73,18 +73,18 @@ function updateRatesList() {
 function searchRate() {
   let fromCurrency = document.getElementById("search-from").value.toUpperCase();
   let toCurrency = document.getElementById("search-to").value.toUpperCase();
-  
+
   let foundRate = null;
 
   currencyRatesArray.forEach(rateObj => {
-    if (rateObj.base === fromCurrency && rateObj.rates[toCurrency] !== undefined) {
+    if (rateObj.base === fromCurrency && rateObj.rates[toCurrency]) {
       foundRate = rateObj.rates[toCurrency];
     }
   });
 
   let resultDisplay = document.getElementById("search-result");
-  
-  if (foundRate !== null) {
+
+  if (foundRate) {
     resultDisplay.textContent = `Exchange Rate from ${fromCurrency} to ${toCurrency}: ${foundRate}`;
   } else {
     resultDisplay.textContent = "Currency rate not found.";
