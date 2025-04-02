@@ -1,4 +1,4 @@
-let currencyRatesArray = [
+const currencyRatesArray = [
   {
     "timestamp": Date.now(),
     "base": "EUR",
@@ -32,7 +32,7 @@ function addCurrencyRate(baseCurrency, newCurrency, rate) {
   let existingRateObject = currencyRatesArray.find(rateObj => rateObj.base === baseCurrency);
 
   if (existingRateObject) {
-    if (existingRateObject.rates[newCurrency] === undefined) {
+    if (!existingRateObject.rates[newCurrency]) {
       existingRateObject.rates[newCurrency] = rate;
       alert(`Added new rate: 1 ${baseCurrency} = ${rate} ${newCurrency}`);
     } else {
@@ -77,7 +77,7 @@ function searchRate() {
   let foundRate = null;
 
   currencyRatesArray.forEach(rateObj => {
-    if (rateObj.base === fromCurrency && rateObj.rates[toCurrency] !== undefined) {
+    if (rateObj.base === fromCurrency && rateObj.rates[toCurrency]) {
       foundRate = rateObj.rates[toCurrency];
     }
   });
