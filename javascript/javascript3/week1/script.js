@@ -1,21 +1,20 @@
 let currencyRatesArray = []; // Global variable to store currency rates
 
-async function getData() {
-  try {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/besart-elezi/besart-elezi.github.io/refs/heads/main/api/currency_converter.json"
-    );
-    const myData = await response.json();
-    console.log("DATA", myData);
+function getData() {
+  return fetch(
+    "https://raw.githubusercontent.com/besart-elezi/besart-elezi.github.io/refs/heads/main/api/currency_converter.json"
+  )
+    .then(response => response.json())
+    .then(myData => {
+      console.log("DATA", myData);
 
-    // Assign fetched data to currencyRatesArray
-    currencyRatesArray = myData || [];
+      // Assign fetched data to currencyRatesArray
+      currencyRatesArray = myData || [];
 
-    // Update the UI with new data
-    updateRatesList();
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
+      // Update the UI with new data
+      updateRatesList();
+    })
+    .catch(error => console.error("Error fetching data:", error));
 }
 
 function addCurrencyRate(baseCurrency, newCurrency, rate) {
@@ -91,32 +90,32 @@ function searchRate() {
     : "Currency rate not found.";
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   console.log('loaded')
 
-  await getData(); // Fetch data and populate currencyRatesArray
+  getData().then(() => {
+    let form = document.getElementById("add-currency-form");
+    if (form) {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let baseCurrency = document.getElementById("base-currency").value.toUpperCase();
+        let currency = document.getElementById("currency").value.toUpperCase();
+        let rate = parseFloat(document.getElementById("rate").value);
+        addCurrencyRate(baseCurrency, currency, rate);
+      });
+    }
 
-  let form = document.getElementById("add-currency-form");
-  if (form) {
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      let baseCurrency = document.getElementById("base-currency").value.toUpperCase();
-      let currency = document.getElementById("currency").value.toUpperCase();
-      let rate = parseFloat(document.getElementById("rate").value);
-      addCurrencyRate(baseCurrency, currency, rate);
-    });
-  }
+    // Add event listener for search button
+    let searchButton = document.getElementById("search-button");
+    if (searchButton) {
+      searchButton.addEventListener("click", searchRate);
+    }
 
-  // Add event listener for search button
-  let searchButton = document.getElementById("search-button");
-  if (searchButton) {
-    searchButton.addEventListener("click", searchRate);
-  }
+    // Immediately check the market status when the page loads
+    checkMarketStatus();
 
-  // Immediately check the market status when the page loads
-  checkMarketStatus();
-
-  updateRatesList();
+    updateRatesList();
+  });
 });
 
 function getTimeUntil(hour, minute = 0) {
