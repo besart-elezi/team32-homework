@@ -64,9 +64,28 @@ function updateRatesList() {
     let date = rateObj.date;
 
     for (let currency in rateObj.rates) {
-      let item = document.createElement("li");
-      item.textContent = `${baseCurrency} → ${currency}: ${rateObj.rates[currency]} Timestamp: ${timestamp} Date: ${date}    `;
-      list.appendChild(item);
+      let rate = rateObj.rates[currency];
+
+      let row = document.createElement("tr");
+
+      let baseTd = document.createElement("td");
+      baseTd.textContent = baseCurrency;
+
+      let targetTd = document.createElement("td");
+      targetTd.textContent = currency;
+
+      let rateTd = document.createElement("td");
+      rateTd.textContent = rate;
+
+      let dateTd = document.createElement("td");
+      dateTd.textContent = date;
+
+      row.appendChild(baseTd);
+      row.appendChild(targetTd);
+      row.appendChild(rateTd);
+      row.appendChild(dateTd);
+
+      list.appendChild(row);
     }
   });
 }
