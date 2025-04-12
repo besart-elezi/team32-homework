@@ -28,7 +28,9 @@ function addCurrencyRate(baseCurrency, newCurrency, rate) {
   newCurrency = newCurrency.toUpperCase();
   rate = Number(rate.toFixed(4));
 
-  let existingRateObject = currencyRatesArray.find(rateObj => rateObj.base === baseCurrency);
+  let existingRateObject = currencyRatesArray.find(
+    (rateObj) => rateObj.base === baseCurrency
+  );
 
   if (existingRateObject) {
     if (!existingRateObject.rates[newCurrency]) {
@@ -39,15 +41,17 @@ function addCurrencyRate(baseCurrency, newCurrency, rate) {
     }
   } else {
     let newRateObject = {
-      "timestamp": Date.now(),
-      "base": baseCurrency,
-      "date": new Date().toISOString().split('T')[0],
-      "rates": {
-        [newCurrency]: rate
-      }
+      timestamp: Date.now(),
+      base: baseCurrency,
+      date: new Date().toISOString().split("T")[0],
+      rates: {
+        [newCurrency]: rate,
+      },
     };
     currencyRatesArray.push(newRateObject);
-    alert(`Created new rate set for ${baseCurrency}: 1 ${baseCurrency} = ${rate} ${newCurrency}`);
+    alert(
+      `Created new rate set for ${baseCurrency}: 1 ${baseCurrency} = ${rate} ${newCurrency}`
+    );
   }
 
   updateRatesList();
@@ -58,7 +62,7 @@ function updateRatesList() {
   if (!list) return;
   list.innerHTML = "";
 
-  currencyRatesArray.forEach(rateObj => {
+  currencyRatesArray.forEach((rateObj) => {
     let baseCurrency = rateObj.base;
     let timestamp = rateObj.timestamp;
     let date = rateObj.date;
@@ -96,7 +100,7 @@ function searchRate() {
 
   let foundRate = null;
 
-  currencyRatesArray.forEach(rateObj => {
+  currencyRatesArray.forEach((rateObj) => {
     if (rateObj.base === fromCurrency && rateObj.rates[toCurrency]) {
       foundRate = rateObj.rates[toCurrency];
     }
@@ -111,7 +115,7 @@ function searchRate() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  console.log('loaded')
+  console.log("loaded");
 
   await getData(); // Fetch data and populate currencyRatesArray
 
@@ -119,7 +123,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (form) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-      let baseCurrency = document.getElementById("base-currency").value.toUpperCase();
+      let baseCurrency = document
+        .getElementById("base-currency")
+        .value.toUpperCase();
       let currency = document.getElementById("currency").value.toUpperCase();
       let rate = parseFloat(document.getElementById("rate").value);
       addCurrencyRate(baseCurrency, currency, rate);
@@ -152,11 +158,11 @@ function getTimeUntil(hour, minute = 0) {
 
 //Week 3 requirement: Implement a timeout to show an announcement when the market open or/and close. The market opens at 9AM and closes at 5PM local time.
 function checkMarketStatus() {
-  console.log('Periodic checking of market status')
-  let status = "Market status: "
+  console.log("Periodic checking of market status");
+  let status = "Market status: ";
   const now = new Date();
   const hour = now.getHours();
-  status += (hour >= 9 && hour < 17 ? "open" : "closed");
+  status += hour >= 9 && hour < 17 ? "open" : "closed";
 
   const statusElement = document.getElementById("market-status");
   if (statusElement) {

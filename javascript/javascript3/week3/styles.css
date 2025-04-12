@@ -1,71 +1,63 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  
-  body {
-    text-align: center;  
-    font-family: 'Courier New', Courier, monospace;
-    padding: 20px;  
-    background-image: url('currency-stock.png');
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  h1, h2, h3 {
-    margin-top: 20px;  
-    margin-bottom: 10px;
-  }
-  
-  
-  p {
-    margin-bottom: 15px; 
-  }
-  
- 
-  button {
-    padding: 10px; 
-    border-radius: 10px;
-    color: rgb(117, 13, 13);               
-    border: 5px;    
-    border-color: rgb(231, 37, 37);     
-    background-color: rgb(44, 189, 189);   
-    color: white;
-  }
+body {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  padding: 20px;
+  background-image: url("currency-stock.png");
+}
 
-  table {
-    width: 100%;
-    background-color: rgb(44, 189, 189); 
-  }
+h1,
+h2,
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
 
-  td {
+p {
+  margin-bottom: 15px;
+}
 
-  }
+button {
+  padding: 10px;
+  border-radius: 10px;
+  color: rgb(117, 13, 13);
+  border: 5px;
+  border-color: rgb(231, 37, 37);
+  background-color: rgb(44, 189, 189);
+  color: white;
+}
 
-  th {
-    background-color: #4880b8;
-    color: rgb(223, 230, 231);
-  }
+table {
+  width: 100%;
+  background-color: rgb(44, 189, 189);
+}
 
- tr:nth-child(even) {
-    background-color: #f1f3f5;
-  }
+th {
+  background-color: #4880b8;
+  color: rgb(223, 230, 231);
+}
 
-  tr:hover {
-    background-color: #e2e6ea;
-  }
-  
-  #market-status {
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(255, 255, 255, 0.7); /* Optional: for readability */
-    border: 2px solid aqua;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-  }
+tr:nth-child(even) {
+  background-color: #f1f3f5;
+}
 
-  
+tr:hover {
+  background-color: #e2e6ea;
+}
+
+#market-status {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.7); /* Optional: for readability */
+  border: 2px solid aqua;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+}
